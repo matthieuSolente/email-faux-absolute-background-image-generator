@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Html Email Template Generator">
+    <meta name="author" content="Matthieu Solente">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="email, generator, html, css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Email Faux absolute Generator</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="flex-container">
+        <div class="flex-row center">
+          <h1 class="title">Email Faux Absolute & background image Generator</h1>
+          <p class="description">Create your vml friendly faux absolute component.</p>
+        </div>
+        <div class="flex-row">
+          <div class="flex-col-md-6">
+            <p class="heading">General settings</p>
+            <div class="generator--row">
+              <div class="generator--half-row">
+                <label for="mediaQuery">Media Query Max Width</label>
+                <input type="number" name="Media Query" id="mediaQuery" value="600">
+                <aside class="px">px</aside>
+              </div>
+              <div class="generator--half-row">
+                <label for="imgUrl">Your Image</label>
+                <input type="text" placeholder="https://" id="imgUrl" value="https://picsum.photos/id/237/600/300">
+              </div>
+            </div>
+            <div class="generator--row">
+              <div class="generator--half-row">
+                <label for="imgWidth">Image width</label>
+                <input type="number" name="Image width" id="imgWidth" value="600">
+                <aside class="px">px</aside>
+              </div>
+              <div class="generator--half-row">
+                <label for="mClass">Class for image container</label>
+                <input type="text" name="Fallback color" id="mClass" value="my-class">
+              </div>
+            </div>
+            <div class="generator--row">
+              <div class="generator--half-row">
+                <label for="bgFallbackColor">Fallback Image Background Color</label>
+                <input type="text" name="Fallback color" id="bgFallbackColor" value="#000001" data-coloris>
+              </div>
+              <div class="generator--half-row">
+                <label for="divClass">Class for your inner div</label>
+                <input type="text" name="inner div class" id="divClass" value="divclass">
+              </div>
+            </div>
+            <div class="generator--row">
+              <div class="generator--half-row">
+                <label for="desktopTopPosition">Desktop Inner div Top Position</label>
+                <input type="number" name="Inner Div Top Position" id="desktopTopPosition" value="100">
+                <aside class="px">px</aside>
+              </div>
+              <div class="generator--half-row">
+                <label for="innerDivWidth">Desktop Inner div width</label>
+                <input type="number" name="Padding" id="innerDivWidth" value="400">
+                <aside class="px">px</aside>
+              </div>
+            </div>
+            <div class="generator--row">
+              <div class="generator--half-row">
+                <label for="innerDivbgColor">Inner div Background-color</label>
+                <input type="text" name="Fallback color" id="innerDivbgColor" value="#e7e8f0" data-coloris>
+              </div>
+            </div>
+            <div class="generator--row">
+              <div class="generator--half-row">
+                <label for="desktopCenter">Center everything on Desktop ?</label>
+                <input type="checkbox" name="center" id="desktopCenter" checked="checked">
+              </div>
+            </div>
+            <div>
+              <p>If you uncheck this box, the desktop content will be shifted to the left, and you'll be able to add margin-left to image or text block, so that you can create horizontal faux absolute layout.</p>
+            </div>
+            <div id="desktopPosition" class="generator--row">
+              <div class="generator--half-row">
+                <label for="imgDktMarginLeft">Desktop Image margin left</label>
+                <input type="number" name="Desktop image MarginLeft" id="imgDktMarginLeft" value="0">
+                <aside class="px">px</aside>
+              </div>
+              <div class="generator--half-row">
+                <label for="divDktMarginLeft">Desktop Inner div Margin-left</label>
+                <input type="number" name="Inner div Margin-left" id="divDktMarginLeft" value="0">
+                <aside class="px">px</aside>
+              </div>
+            </div>
+            <hr>
+            <p class="heading">Mobile General Settings</p>
+            <div class="generator--row">
+              <div class="generator--half-row">
+                <label for="mobileTopPosition">Mobile Inner div Top Position</label>
+                <input type="number" name="Inner Div Top Position" id="mobileTopPosition" value="100">
+                <aside class="px">px</aside>
+              </div>
+              <div class="generator--half-row">
+                <label for="innerDivMobWidth">Mobile Inner div width</label>
+                <input type="number" name="Padding" id="innerDivMobWidth" value="300">
+                <aside class="px">px</aside>
+              </div>
+            </div>
+            <div class="generator--row">
+              <div class="generator--half-row">
+                <input type="checkbox" name="center" id="mobileCenter" checked="checked">
+                <label for="mobileCenter">Center everything on mobile ?</label>
+              </div>
+            </div>
+            <div>
+              <p>If you uncheck this box, the mobile content will be shifted to the left, and you'll be able to add margin-left to image or text block, so that you can create horizontal faux absolute layout.</p>
+            </div>
+            <div id="mobilePosition" class="generator--row">
+              <div id="imgMobilePosition" class="generator--half-row">
+                <label for="imgMobMarginLeft">Mobile Image Margin-left</label>
+                <input type="number" name="Mobile image MarginLeft" id="imgMobMarginLeft" value="0">
+                <aside class="px">px</aside>
+              </div>
+              <div class="generator--half-row">
+                <label for="divMobMarginLeft">Mobile Inner div margin left</label>
+                <input type="number" name="Inner div Margin-left" id="divMobMarginLeft" value="0">
+                <aside class="px">px</aside>
+              </div>
+            </div>
+          </div>
+          <div class="flex-col-md-6">
+            <button type="button" id="toggle_view">Mobile View</button>
+            <div id="preview"></div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="code-block">
+            <h3>HTML code</h3>
+            <div id="code"></div>
+            <div class="copypress">
+              <button onclick="copyHtml()">Copy html</button>
+            </div>
+          </div>
+          <div class="code-block">
+            <h3>Css code</h3>
+            <div  id="css"></div>
+            <div class="copypress">
+              <button onclick="copyCss()">Copy css</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="js/coloris.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <footer>
+      © Matthieu Solente <span id="year"></span>
+    </footer>
+  </body>
+</html>
