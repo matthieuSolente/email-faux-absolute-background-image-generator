@@ -206,10 +206,13 @@ aside{
     background: #27232c;
     padding: 10px;
     margin:1em 0;
+      max-height:300px;
+  overflow:auto;
 }
 .code-block{
   position:relative;
   width:100%;
+
 }
 .copypress {
   position: absolute;
