@@ -25,6 +25,8 @@ Same thing in the mobile General Settngs
 
 The green button above the preview allows you to switch from the desktop version to the mobile version.
 
+The text block is only there for the preview and to better visualize the positioning of the block. It will not be present in the code
+
 Given the difficulty, this tool will not be suitable for all types of layouts, and certain bugs may be observed here and there on different email clients. However, it is flexible enough to offer you a basic code, sufficient in the majority of cases, but which you can very easily adapt to your problem.
 
 The main email clients causing problems are T-Online, Web.de Wall!mail, GMX.
