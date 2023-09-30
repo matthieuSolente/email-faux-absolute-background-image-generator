@@ -1,4 +1,3 @@
-
 /***********************************************/
 /* TOGGLE PREVIEW DESKTOP/MOBILE VIEW   */
 /* **********************************************/
@@ -85,7 +84,7 @@ vmlDesktopCenter;
     divClass = $('#divClass').val();
     bgFallbackColor = $('#bgFallbackColor').val();
     mediaQuery = $('#mediaQuery').val();
-    
+    imgHeight=$('#preview img').height;
     //desktop settings
     desktopTopPosition = $('#desktopTopPosition').val();
     innerDivWidth = $('#innerDivWidth').val();
@@ -96,7 +95,7 @@ vmlDesktopCenter;
     mobileTopPosition = $('#mobileTopPosition').val();
     innerDivMobWidth = $('#innerDivMobWidth').val()+'px';
     innerDivMobileWidthPercent =  Math.ceil(innerDivWidth / mediaQuery *100)+'%';
-   vmlTopPosition = Math.ceil(originalHeight - desktopTopPosition);
+    vmlTopPosition = Math.ceil(originalHeight - desktopTopPosition);
 
     if( $('#desktopCenter').is(':checked')){
         $('#desktopPosition').hide();
@@ -290,37 +289,31 @@ vmlDesktopCenter;
     +'    </td>\n'
     +'  </tr>\n'
     +'</table>\n'
-
-    generateCode = '&lt;table role=&quot;presentation&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; border=&quot;0&quot; style=&quot;max-width:'+mediaQuery+'px;&quot;&gt;<br/>  &lt;tr&gt;<br/>    &lt;td class=&quot;align&quot; style=&quot;text-align:center;&quot;&gt;<br/>      &lt;div class=&quot;'+mClass+'&quot; style=&quot;max-height:'+desktopTopPosition+'px;&quot;&gt;<br/>        &lt;img src=&quot;'+imgUrl+'&quot; width=&quot;'+imgWidth+'&quot; alt=&quot;&quot; style=&quot;width:100%;max-width:'+imgWidth+'px;height:auto;display:block;border:0;background-color:'+bgFallbackColor+'&quot;&gt;<br/>      &lt;/div&gt;<br/>      <br/>          &lt;!--[if mso]&gt;<br/>          &lt;v:rect xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; stroked=&quot;f&quot; filled=&quot;f&quot; style=&quot;width:'+innerDivWidth+'px;height:auto;position:relative;top:-'+vmlTopPosition+'px;'+vmlDesktopCenter+''+divVmlMarginLeft+'&quot; alt=&quot;&quot;&gt;<br/>          &lt;v:textbox inset=&quot;0,0,0,0&quot; style=&quot;mso-fit-shape-to-text:true;&quot;&gt;<br/>          &lt;![endif]--&gt; <br/>          &lt;div class=&quot;'+divClass+'&quot; style=&quot;margin-top:'+gangaPosition+'&quot;&gt;     <br/>          &lt;table  role=&quot;presentation&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;  width=&quot;100%&quot; style=&quot;max-width:'+innerDivWidth+'px;'+innerDivbgColor+'position:relative;display:inline-block;&quot;&gt;<br/>            &lt;!-- -INSERT YOUR CONTENT (title, text, CTA...) - --&gt;<br/>            <br/>          &lt;/table&gt;<br/>        &lt;/div&gt;<br/>          &lt;!--[if mso]&gt;<br/>          &lt;p style=&quot;margin:0;mso-hide:all&quot;&gt;<br/>          &lt;o:p xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot;&gt; &lt;/o:p&gt;<br/>          &lt;/p&gt;<br/>          &lt;/v:textbox&gt;<br/>          &lt;/v:rect&gt;<br/>          &lt;![endif]--&gt;<br/>    &lt;/td&gt;<br/>  &lt;/tr&gt;<br/>&lt;/table&gt;' ;
-
+    generateCode = '&lt;table role=&quot;presentation&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; border=&quot;0&quot; style=&quot;max-width:'+mediaQuery+'px;&quot;&gt;<br/>  &lt;tr&gt;<br/>    &lt;td class=&quot;align&quot; style=&quot;text-align:center;&quot;&gt;<br/>      &lt;div class=&quot;'+mClass+'&quot; style=&quot;max-height:'+desktopTopPosition+'px;&quot;&gt;<br/>        &lt;img src=&quot;'+imgUrl+'&quot; width=&quot;'+imgWidth+'&quot; alt=&quot;&quot; style=&quot;width:100%;max-width:'+imgWidth+'px;height:auto;display:block;border:0;background-color:'+bgFallbackColor+'&quot;&gt;<br/>      &lt;/div&gt;<br/>      <br/>          &lt;!--[if mso]&gt;<br/>          &lt;v:rect xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; stroked=&quot;f&quot; filled=&quot;f&quot; style=&quot;width:'+innerDivWidth+'px;height:auto;position:relative;top:-'+vmlTopPosition+'px;'+vmlDesktopCenter+''+divVmlMarginLeft+'&quot; alt=&quot;&quot;&gt;<br/>          &lt;v:textbox inset=&quot;0,0,0,0&quot; style=&quot;mso-fit-shape-to-text:true;&quot;&gt;<br/>          &lt;![endif]--&gt; <br/>          &lt;div class=&quot;'+divClass+'&quot; style=&quot;margin-top:'+gangaPosition+'&quot;&gt;     <br/>          &lt;table  role=&quot;presentation&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;  width=&quot;100%&quot; style=&quot;max-width:'+innerDivWidth+'px;'+innerDivbgColor+'position:relative;display:inline-block;&quot;&gt;<br/>            &lt;!---INSERT YOUR CONTENT (title, text, CTA...) ---&gt;<br/>            <br/>          &lt;/table&gt;<br/>        &lt;/div&gt;<br/>          &lt;!--[if mso]&gt;<br/>          &lt;p style=&quot;margin:0;mso-hide:all&quot;&gt;<br/>          &lt;o:p xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot;&gt; &lt;/o:p&gt;<br/>          &lt;/p&gt;<br/>          &lt;/v:textbox&gt;<br/>          &lt;/v:rect&gt;<br/>          &lt;![endif]--&gt;<br/>         <br/>    &lt;/td&gt;<br/>  &lt;/tr&gt;<br/>&lt;/table&gt;' ;
     $('#preview').html(generatePreview);
     $('#code').html(generateCode);
-    $('#css').html(generateCss);   
-        
+    $('#css').html(generateCss);    
+
 }update();
-
-function determineNewHeight(originalHeight, originalWidth, newWidth){
-  return (originalHeight / originalWidth) * newWidth;
-}
-
-$(document).ready(function(){
-  imgLoad = $("<img />");
-  imgLoad.attr('src', imgUrl);
-  imgLoad.on("load", function () {
+ $(document).ready(function(){
+    imgLoad = $("<img/>");
+    imgLoad.attr('src', imgUrl);
+    imgLoad.on("load", function () {
     originalHeight = this.height;  
     originalWidth=this.width;
-    vmlTopPosition = Math.ceil(originalHeight - desktopTopPosition);
     update();
-  });
-  originalHeight = imgLoad[0].height;
+    });
+})
 
+$(document).on('change','#imgWidth',function(){
+     originalWidth = imgLoad[0].width;
+    originalHeight = imgLoad[0].height;
+    originalHeight = (originalHeight / originalWidth) * $('#imgWidth').val();
+    update();
 });
 
-$( "input, select" ).on('change',function() {
+$( "input:not('#imgWidth'), select" ).on('change',function() {
   update();
-  });
-$("#imgWidth").on('change',function(){
-  originalHeight=(originalHeight / originalWidth) * $('#imgWidth').val();
-  update();
-})
+});
+
 })(jQuery);
