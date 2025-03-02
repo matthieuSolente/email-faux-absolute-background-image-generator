@@ -360,7 +360,43 @@ transform: scale(0.85);
     width: calc(100% * (12 / 12));
   }
 }
+.flex-col-xs-7,
+.flex-col-sm-7,
+.flex-col-md-7,
+.flex-col-lg-7 {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1em;
+  width: 100%;
+}
 
+@media (min-width: 540px) {
+  .flex-col-xs-7 {
+    max-width: calc(100% * (7 / 12));
+    width: calc(100% * (7 / 12));
+  }
+}
+
+@media (min-width: 768px) {
+  .flex-col-sm-7 {
+    max-width: calc(100% * (7 / 12));
+    width: calc(100% * (7 / 12));
+  }
+}
+
+@media (min-width: 992px) {
+  .flex-col-md-7 {
+    max-width: calc(100% * (7 / 12));
+    width: calc(100% * (7 / 12));
+  }
+}
+
+@media (min-width: 1200px) {
+  .flex-col-lg-7 {
+    max-width: calc(100% * (7 / 12));
+    width: calc(100% * (7 / 12));
+  }
+}
 .flex-col-xs-6,
 .flex-col-sm-6,
 .flex-col-md-6,
@@ -399,7 +435,43 @@ transform: scale(0.85);
   }
 }
 
+.flex-col-xs-5,
+.flex-col-sm-5,
+.flex-col-md-5,
+.flex-col-lg-5 {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1em;
+  width: 100%;
+}
 
+@media (min-width: 540px) {
+  .flex-col-xs-5 {
+    max-width: calc(100% * (5 / 12));
+    width: calc(100% * (5 / 12));
+  }
+}
+
+@media (min-width: 768px) {
+  .flex-col-sm-5 {
+    max-width: calc(100% * (5 / 12));
+    width: calc(100% * (5 / 12));
+  }
+}
+
+@media (min-width: 992px) {
+  .flex-col-md-5 {
+    max-width: calc(100% * (5 / 12));
+    width: calc(100% * (5 / 12));
+  }
+}
+
+@media (min-width: 1200px) {
+  .flex-col-lg-5 {
+    max-width: calc(100% * (5 / 12));
+    width: calc(100% * (5 / 12));
+  }
+}
 /*****************************************************************************************/
 /**************** COLORIS PLUGIN https://github.com/mdbassit/Coloris *********************/
 /*****************************************************************************************/
