@@ -54,11 +54,7 @@ alignCenter,
 innerDivWidth, 
 innerDivbgColor,
 desktopCenter,
-imgDktMarginLeft,
-divDktMarginLeft,
 gangaPosition,
-imgMobMarginLeft,
-divMobMarginLeft,
 mobileTopPosition,
 innerDivMobWidth,
 generateCode, 
@@ -67,7 +63,6 @@ generateCss,
 vmlDesktopCenter,
 innerDivMobileWidthPercent,
 vmlTopPosition,
-divVmlMarginLeft,
 imgLoad,
 originalWidth,
 originalHeight,
@@ -88,32 +83,31 @@ vmlDesktopCenter;
     //desktop settings
     desktopTopPosition = $('#desktopTopPosition').val();
     innerDivWidth = $('#innerDivWidth').val();
-    innerDivbgColor = 'background-color:'+$('#innerDivbgColor').val()+';';
-    divDktMarginLeft = $('#divDktMarginLeft').val()+'px;';
-    imgMobMarginLeft = $('#imgMobMarginLeft').val()+'px;';
+    if( $('#backgroundColor').is(':checked')){
+        $('#backgroundInput').show();
+        innerDivbgColor = 'background-color:'+$('#innerDivbgColor').val()+';';
+    }else{
+        $('#backgroundInput').hide();
+        innerDivbgColor = '';
+    }
+
     //mobile settings
     mobileTopPosition = $('#mobileTopPosition').val();
     innerDivMobWidth = $('#innerDivMobWidth').val()+'px';
     innerDivMobileWidthPercent =  Math.ceil(innerDivWidth / mediaQuery *100)+'%';
     vmlTopPosition = Math.ceil(originalHeight - desktopTopPosition);
-
+console.log(originalHeight);
+console.log(vmlTopPosition);
     if( $('#desktopCenter').is(':checked')){
-        $('#desktopPosition').hide();
          gangaPosition ='0';
     }else{
-        $('#desktopPosition').show();
         gangaPosition=($('#mobileTopPosition').val() / 2)+'px';
     }
-    if( $('#mobileCenter').is(':checked')){
-        $('#mobilePosition').hide();
-    }else{
-        $('#mobilePosition').show();
-    }
+ 
   
     if($('#desktopCenter').is(':checked') && $('#mobileCenter').is(':checked')){
     // align='center';
     vmlDesktopCenter='mso-position-horizontal:center;';
-    divVmlMarginLeft='';
     generatePreview='\n'
     +'<style>\n'
     +'#preview{\n'
@@ -138,12 +132,11 @@ vmlDesktopCenter;
     +'  }\n'
     +'}\n'
     +'</style>\n'
-    generateCss ='&lt;style&gt;<br/>.align{<br/>  text-align:center;<br/>}<br/>.'+mClass+' img{<br/>    margin:0 auto !important;<br/>}<br/>.'+divClass+'{<br/>    margin:0 auto !important;<br/>}<br/>@media screen and (max-width:'+mediaQuery+'px) {  <br/>  .'+mClass+' {<br/>    max-height:'+mobileTopPosition+'px !important;  <br/>    margin-top:0 !important;<br/>  }<br/> .'+divClass+' table{<br/>    max-width:'+innerDivMobWidth+' !important;<br/>  }<br/>}<br/>&lt;/style&gt;';
+    generateCss ='&lt;style&gt;<br/>.align{<br/>  text-align:center;<br/>}<br/>.'+mClass+' img{<br/>    margin:0 auto !important;<br/>}<br/>.'+divClass+'{<br/>    margin:0 auto !important;<br/>}<br/>@media screen and (max-width:'+mediaQuery+'px) {<br/> .'+mClass+' {<br/>    max-height:'+mobileTopPosition+'px !important;  <br/>     margin-top:0 !important;<br/>  }<br/> .'+divClass+' table{<br/>    max-width:'+innerDivMobWidth+' !important;<br/>  }<br/>}<br/>&lt;/style&gt;';
 
     }else if($('#desktopCenter').is(":not(:checked)") && $('#mobileCenter').is(':checked')){
 // align='left';
     vmlDesktopCenter = '';
-    divVmlMarginLeft = 'left:'+$('#divDktMarginLeft').val()+'px';
     generatePreview='\n'
     +'<style>\n'
     +' #preview{\n'
@@ -152,11 +145,7 @@ vmlDesktopCenter;
     +'.align{\n'
     +'  text-align:left !important;\n'
     +'}\n'
-    +'.'+mClass+'{\n'
-    +'  margin-left:'+$('#imgDktMarginLeft').val()+'px;\n'
-    +'}\n'
     +'.'+divClass+'{\n'
-    +'  margin-left:'+$('#divDktMarginLeft').val()+'px !important;\n'
     +'  margin-top:0 !important;\n'
     +'}\n'
 
@@ -179,12 +168,11 @@ vmlDesktopCenter;
     +'  }\n'
     +'}\n'
     +'</style>\n'
-    generateCss ='&lt;style&gt;<br/>.align{<br/>  text-align:left !important;<br/>}<br/>.'+mClass+'{<br/> margin-left:'+$('#imgDktMarginLeft').val()+'px;<br/>}<br/>.'+divClass+'{<br/> margin-left:'+$('#divDktMarginLeft').val()+'px !important;<br/>  margin-top:0 !important;<br/>}<br/>@media screen and (max-width:'+mediaQuery+'px) {<br/>     .align{<br/>  text-align:center !important;<br/>  }<br/>  .'+mClass+' {<br/>    max-height:'+mobileTopPosition+'px !important;<br/>   margin:0 auto !important;<br/>  }<br/>    .'+mClass+' img {<br/>    margin:0 auto !important;<br/>  } <br/> .'+divClass+'{<br/>    margin:0 auto !important;<br/>  }<br/>  .'+divClass+' table{<br/>    max-width:'+innerDivMobWidth+' !important;<br/>  }<br/>}<br/>&lt;/style&gt;';
+    generateCss ='&lt;style&gt;<br/>.align{<br/>  text-align:left !important;<br/>}<br/>.'+divClass+'{<br/>  margin-top:0 !important;<br/>}<br/>@media screen and (max-width:'+mediaQuery+'px) {<br/>  .align{<br/>    text-align:center !important;<br/>  }<br/>  .'+mClass+' {<br/>    max-height:'+mobileTopPosition+'px !important;<br/>    margin:0 auto !important;  <br/>  }<br/>  .'+mClass+' img {<br/>     margin:0 auto !important;<br/>  } <br/> .'+divClass+'{<br/>    margin:0 auto !important;<br/>  }<br/>   .'+divClass+' table{<br/>      max-width:'+innerDivMobWidth+' !important; <br/>  }<br/>}<br/>&lt;/style&gt;';
 
     }else if($('#desktopCenter').is(":not(:checked)") && $('#mobileCenter').is(":not(:checked)")){
     // align='left';
     vmlDesktopCenter = '';
-    divVmlMarginLeft = 'left:'+$('#divDktMarginLeft').val()+'px';
     generatePreview='\n'
     +'<style>\n'
     +' #preview{\n'
@@ -193,20 +181,15 @@ vmlDesktopCenter;
     +'.align{\n'
     +'  text-align:left !important;\n'
     +'}\n'
-    +'.'+mClass+' {\n'
-    +'  margin-left:'+$('#imgDktMarginLeft').val()+'px;\n'
-    +'  }\n'
+
     +'.'+divClass+'{\n'
-    +'  margin-left:'+$('#divDktMarginLeft').val()+'px !important;\n'
     +'  margin-top:0 !important;\n'
     +'}\n'
     +'@container (inline-size < '+mediaQuery+'px) {\n'
     +'  .'+mClass+' {\n'
     +'    max-height:'+mobileTopPosition+'px !important;\n'
-    +'    margin-left:'+$('#imgMobMarginLeft').val()+'px !important;\n'
     +'  }\n'
     +' .'+divClass+'{\n'
-    +'    margin-left:'+$('#divMobMarginLeft').val()+'px !important;\n'
     +'    margin-top:0 !important;\n'
     +'  }\n'
     +'  .'+divClass+' table{\n'
@@ -214,12 +197,11 @@ vmlDesktopCenter;
     +'  }\n'
     +'}\n'
     +'</style>\n'
-    generateCss='&lt;style&gt;<br/>.align{<br/> text-align:left !important;<br/>}<br/>.'+mClass+' {<br/>  margin-left:'+$('#imgDktMarginLeft').val()+'px;<br/>}<br/>.'+divClass+'{<br/> margin-left:'+$('#divDktMarginLeft').val()+'px !important;<br/>  margin-top:0 !important;<br/>}<br/>@media screen and (max-width:'+mediaQuery+'px) {<br/>  .'+mClass+' {<br/>   max-height:'+mobileTopPosition+'px !important;<br/>   margin-left:'+$('#imgMobMarginLeft').val()+'px !important;<br/>  }<br/> .'+divClass+'{<br/>    margin-left:'+$('#divMobMarginLeft').val()+'px !important;<br/>    margin-top:0 !important;<br/>  }<br/>  .'+divClass+' table{<br/>    max-width:'+innerDivMobWidth+' !important;<br/>  }<br/>}<br/>&lt;/style&gt;';
+    generateCss='&lt;style&gt;<br/>.align{<br/>  text-align:left !important;<br/>}<br/>.'+divClass+'{<br/>  margin-top:0 !important;<br/>}<br/>@media screen and (max-width:'+mediaQuery+'px) {<br/>  .'+mClass+' {<br/>    max-height:'+mobileTopPosition+'px !important;<br/>  }<br/> .'+divClass+'{<br/>    margin-top:0 !important;<br/>  }<br/>  .'+divClass+' table{<br/>    max-width:'+innerDivMobWidth+' !important;<br/>  }<br/>}<br/>&lt;/style&gt;';
 
     }else if($('#desktopCenter').is(':checked') && $('#mobileCenter').is(":not(:checked)")){
     // align='center';
     vmlDesktopCenter='mso-position-horizontal:center;';
-    divVmlMarginLeft='';
     generatePreview='\n'
     +'<style>\n'
     +'#preview{\n'
@@ -240,10 +222,8 @@ vmlDesktopCenter;
     +'  }\n'
     +'  .'+mClass+'{\n'
     +'    max-height:'+mobileTopPosition+'px !important;\n'
-    +'    margin-left:'+$('#imgMobMarginLeft').val()+'px !important;\n'
     +'  }\n'
     +' .'+divClass+'{\n'
-    +'    margin-left:'+$('#divMobMarginLeft').val()+'px !important;\n'
     +'    margin-top:0 !important;\n'
     +'  }\n'
     +'  .'+divClass+' table{\n'
@@ -251,7 +231,7 @@ vmlDesktopCenter;
     +'  }\n'
     +'}\n'
     +'</style>\n'
-    generateCss='&lt;style&gt;<br/>.align{<br/> text-align:center;<br/>}<br/>.'+mClass+'{<br/>    margin:0 auto !important;<br/>}<br/>.'+divClass+'{<br/>    margin:0 auto !important;<br/>}<br/>@media screen and (max-width:'+mediaQuery+'px) {<br/>  .align{<br/>    text-align:lef !important ;<br/>  }<br/>  .'+mClass+'{<br/>   max-height:'+mobileTopPosition+'px !important;<br/>   margin-left:'+$('#imgMobMarginLeft').val()+'px !important;<br/>  }<br/> .'+divClass+'{<br/>    margin-left:'+$('#divMobMarginLeft').val()+'px !important;<br/>    margin-top:0 !important;<br/>  }<br/>  .'+divClass+' table{<br/>    max-width:'+innerDivMobWidth+' !important;<br/>  }<br/>}<br/>&lt;/style&gt;';
+    generateCss='&lt;style&gt;<br/>.align{<br/>  text-align:center;<br/>}<br/>.'+mClass+'{<br/>    margin:0 auto !important;<br/>}<br/>.'+divClass+'{<br/>    margin:0 auto !important;<br/>}<br/>@media screen and (max-width:'+mediaQuery+'px) {<br/>   .align{<br/>    text-align:left !important;<br/>  }<br/>  .'+mClass+'{<br/>    max-height:'+mobileTopPosition+'px !important;<br/>  }<br/> .'+divClass+'{<br/>    margin-top:0 !important;<br/>  }<br/>  .'+divClass+' table{<br/>    max-width:'+innerDivMobWidth+' !important;<br/>  }<br/>}<br/>&lt;/style&gt;';
 
     }
 
@@ -264,7 +244,7 @@ vmlDesktopCenter;
     +'      </div>\n'
     +'      \n'
     +'          <!--[if mso]>\n'
-    +'          <v:rect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" stroked="f" filled="f" style="width:'+innerDivWidth+'px;height:auto;position:relative;top:-'+vmlTopPosition+'px;'+vmlDesktopCenter+''+divVmlMarginLeft+'" alt="">\n'
+    +'          <v:rect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" stroked="f" filled="f" style="width:'+innerDivWidth+'px;height:auto;position:relative;top:-'+vmlTopPosition+'px;'+vmlDesktopCenter+'" alt="">\n'
     +'          <v:textbox inset="0,0,0,0" style="mso-fit-shape-to-text:true;">\n'
     +'          <![endif]--> \n'
     +'          <div class="'+divClass+'" style="margin-top:'+gangaPosition+'">     \n'
@@ -289,7 +269,7 @@ vmlDesktopCenter;
     +'    </td>\n'
     +'  </tr>\n'
     +'</table>\n'
-    generateCode = '&lt;table role=&quot;presentation&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; border=&quot;0&quot; style=&quot;max-width:'+mediaQuery+'px;&quot;&gt;<br/>  &lt;tr&gt;<br/>    &lt;td class=&quot;align&quot; style=&quot;text-align:center;&quot;&gt;<br/>      &lt;div class=&quot;'+mClass+'&quot; style=&quot;max-height:'+desktopTopPosition+'px;&quot;&gt;<br/>        &lt;img src=&quot;'+imgUrl+'&quot; width=&quot;'+imgWidth+'&quot; alt=&quot;&quot; style=&quot;width:100%;max-width:'+imgWidth+'px;height:auto;display:block;border:0;background-color:'+bgFallbackColor+'&quot;&gt;<br/>      &lt;/div&gt;<br/>      <br/>          &lt;!--[if mso]&gt;<br/>          &lt;v:rect xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; stroked=&quot;f&quot; filled=&quot;f&quot; style=&quot;width:'+innerDivWidth+'px;height:auto;position:relative;top:-'+vmlTopPosition+'px;'+vmlDesktopCenter+''+divVmlMarginLeft+'&quot; alt=&quot;&quot;&gt;<br/>          &lt;v:textbox inset=&quot;0,0,0,0&quot; style=&quot;mso-fit-shape-to-text:true;&quot;&gt;<br/>          &lt;![endif]--&gt; <br/>          &lt;div class=&quot;'+divClass+'&quot; style=&quot;margin-top:'+gangaPosition+'&quot;&gt;     <br/>          &lt;table  role=&quot;presentation&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;  width=&quot;100%&quot; style=&quot;max-width:'+innerDivWidth+'px;'+innerDivbgColor+'position:relative;display:inline-block;&quot;&gt;<br/>            &lt;!---INSERT YOUR CONTENT (title, text, CTA...) ---&gt;<br/>            <br/>          &lt;/table&gt;<br/>        &lt;/div&gt;<br/>          &lt;!--[if mso]&gt;<br/>          &lt;p style=&quot;margin:0;mso-hide:all&quot;&gt;<br/>          &lt;o:p xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot;&gt; &lt;/o:p&gt;<br/>          &lt;/p&gt;<br/>          &lt;/v:textbox&gt;<br/>          &lt;/v:rect&gt;<br/>          &lt;![endif]--&gt;<br/>         <br/>    &lt;/td&gt;<br/>  &lt;/tr&gt;<br/>&lt;/table&gt;' ;
+    generateCode = '&lt;table role=&quot;presentation&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; border=&quot;0&quot; style=&quot;max-width:'+mediaQuery+'px;&quot;&gt;<br/>  &lt;tr&gt;<br/>    &lt;td class=&quot;align&quot; style=&quot;text-align:center;&quot;&gt;<br/>      &lt;div class=&quot;'+mClass+'&quot; style=&quot;max-height:'+desktopTopPosition+'px;&quot;&gt;<br/>        &lt;img src=&quot;'+imgUrl+'&quot; width=&quot;'+imgWidth+'&quot; alt=&quot;&quot; style=&quot;width:100%;max-width:'+imgWidth+'px;height:auto;display:block;border:0;background-color:'+bgFallbackColor+'&quot;&gt;<br/>      &lt;/div&gt;<br/>      <br/>      &lt;!--[if mso]&gt;<br/>      &lt;v:rect xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; stroked=&quot;f&quot; filled=&quot;f&quot; style=&quot;width:'+innerDivWidth+'px;height:auto;position:relative;top:-'+vmlTopPosition+'px;'+vmlDesktopCenter+'&quot; alt=&quot;&quot;&gt;<br/>      &lt;v:textbox inset=&quot;0,0,0,0&quot; style=&quot;mso-fit-shape-to-text:true;&quot;&gt;<br/>      &lt;![endif]--&gt; <br/>      &lt;div class=&quot;'+divClass+'&quot; style=&quot;margin-top:'+gangaPosition+'&quot;&gt;     <br/>         &lt;table  role=&quot;presentation&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;  width=&quot;100%&quot; style=&quot;max-width:'+innerDivWidth+'px;'+innerDivbgColor+'position:relative;display:inline-block;&quot;&gt;<br/>         &lt;!---INSERT YOUR CONTENT (title, text, CTA...) ---&gt;<br/>         &lt;/table&gt;<br/>      &lt;/div&gt;<br/>      &lt;!--[if mso]&gt;<br/>      &lt;p style=&quot;margin:0;mso-hide:all&quot;&gt;<br/>      &lt;o:p xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot;&gt; &lt;/o:p&gt;<br/>      &lt;/p&gt;<br/>      &lt;/v:textbox&gt;<br/>      &lt;/v:rect&gt;<br/>      &lt;![endif]--&gt;   <br/>    &lt;/td&gt;<br/>  &lt;/tr&gt;<br/>&lt;/table&gt;' ;
     $('#preview').html(generatePreview);
     $('#code').html(generateCode);
     $('#css').html(generateCss);    
