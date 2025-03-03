@@ -2,13 +2,13 @@
 
 
 This generator allows, like backgrounds.cm, to develop a background image for email.
-In addition to this, you can also move elements and overlap them to create absolute vertical and horizontal positioning.
+In addition to this, you can also move elements and overlap them to create absolute vertical positioning.
 
 Fields:
 
 - **Media Query**  Maximum Width: Here you can set the maximum width of your media query, which matches the width of your template.
 - **Your image** : place the URL of your image here
-- **Image width** : You can leave it the same size as the maximum width of the media query, or shrink it to create a false absolute horizontal.
+- **Image width** : You can leave it the same size as the maximum width of the media query.
 - **class for image container** : this class will be particularly targeted for moving the image.
 - **Image background color** : For email clients that block images by default, provide a background color.
 - **Class for your internal div** : here you can add your own class name, it will be targeted to move the text block
@@ -29,7 +29,7 @@ The text block is only there for the preview and to better visualize the positio
 
 As this generator uses the notion of max-height on the image. This means that you will have to add a spacer, or increase the padding on the next element.
 
-Given the difficulty, this tool will not be suitable for all types of layouts, and certain bugs may be observed here and there on different email clients. However, it is flexible enough to offer you a basic code, sufficient in the majority of cases, but which you can very easily adapt to your problem.
+Given the difficulty, this tool will not be suitable for all types of layouts, and some bugs may be observed here and there on different email clients. However, it is flexible enough to offer you a basic code, sufficient in the majority of cases, and you can very easily adapt it to your scenario.
 
 The main email clients causing problems are T-Online, Web.de Wall!mail, GMX.
 
